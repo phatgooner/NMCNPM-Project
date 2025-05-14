@@ -16,9 +16,12 @@ async function showDefinition(word) {
             return `<p><strong>Part of speech:</strong> ${meaning.partOfSpeech}</p><ul>${defs}</ul>`;
         }).join("");
 
+        let phonetic = entry.phonetics.find(item => item.audio && item.text);
+        entry.phonetic = phonetic;
+
         const content = `
             <p><strong>Word:</strong> ${entry.word}</p>
-            ${entry.phonetic ? `<p><strong>Phonetic:</strong> ${entry.phonetic}</p>` : ""}
+            ${entry.phonetic.text ? `<p><strong>Phonetic:</strong> ${entry.phonetic.text} <button class="btn play-audio-btn mb-1" data-audio-url="${entry.phonetic.audio}"> 🔊 </button> </p>` : ""}
             ${meanings}
         `;
 
@@ -30,3 +33,15 @@ async function showDefinition(word) {
         new bootstrap.Modal(document.getElementById("wordModal")).show();
     }
 };
+
+//Phát âm thanh từ vựng khi click vào biểu tượng loa
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("play-audio-btn")) {
+        const audioUrl = e.target.getAttribute("data-audio-url");
+
+        if (audioUrl) {
+            const audio = new Audio(audioUrl);
+            audio.play().catch(err => console.error("Audio error:", err));
+        }
+    }
+});
