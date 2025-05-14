@@ -1,0 +1,34 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">🧠 English Learning Assistant</h1>
+
+    <!-- Chat box -->
+    <div id="chatArea" class="chat-area bg-light border rounded p-3 mb-3">
+        <!-- Messages will appear here -->
+    </div>
+
+    <!-- Input -->
+    <div class="mb-3">
+        <textarea id="inputText" class="form-control" rows="3" placeholder="Speak or type here..."></textarea>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex gap-2">
+        <button id="recordBtn" class="btn btn-outline-danger w-50">🎙️ Record</button>
+        <button id="sendBtn" class="btn btn-primary w-50">Send ➤</button>
+    </div>
+</div>
+
+<!-- Word Definition Modal -->
+<div class="modal fade" id="wordModal" tabindex="-1" aria-labelledby="wordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wordModalLabel">Word Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <!-- Nội dung từ điển sẽ được đưa vào đây -->
+            </div>
+        </div>
+    </div>
+</div>
