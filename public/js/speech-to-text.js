@@ -1,7 +1,4 @@
 const recordBtn = document.getElementById("recordBtn");
-const sendBtn = document.getElementById("sendBtn");
-const inputText = document.getElementById("inputText");
-const chatArea = document.getElementById("chatArea");
 
 let isRecording = false;
 let recognition;
@@ -19,7 +16,7 @@ if (SpeechRecognition) {
         const transcript = Array.from(event.results)
             .map(result => result[0].transcript)
             .join(" ");
-        inputText.value = transcript;
+        document.getElementById("inputText").value = transcript;
         resetSilenceTimer(); // Có giọng nói -> reset bộ đếm im lặng
     };
 
@@ -51,13 +48,13 @@ recordBtn.addEventListener("click", () => {
     }
 });
 
-// Tự động dừng nếu im lặng quá 2.5 giây
+// Tự động dừng nếu im lặng quá 5 giây
 function resetSilenceTimer() {
     clearTimeout(silenceTimeout);
     silenceTimeout = setTimeout(() => {
         console.log("Silence detected: stopping recording...");
         stopRecording();
-    }, 2500); // 2.5 giây im lặng thì dừng
+    }, 5000); // 5 giây im lặng thì dừng
 };
 
 // Dừng ghi âm

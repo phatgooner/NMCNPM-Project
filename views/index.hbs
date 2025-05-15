@@ -8,11 +8,15 @@
 
     <!-- Input -->
     <div class="mb-3">
-        <textarea id="inputText" class="form-control" rows="3" placeholder="Speak or type here..."></textarea>
+        <textarea id="inputText" class="form-control" rows="3" placeholder="Speak or type here..."
+            style="resize: none;"></textarea>
     </div>
 
+    <!-- Suggestions -->
+    <div id="suggestions" class="d-flex flex-wrap gap-2"></div>
+
     <!-- Buttons -->
-    <div class="d-flex gap-2">
+    <div class="d-flex gap-2 mt-3">
         <button id="recordBtn" class="btn btn-outline-danger w-50">🎙️ Record</button>
         <button id="sendBtn" class="btn btn-primary w-50">Send ➤</button>
     </div>

@@ -1,9 +1,8 @@
-const recordBtn = document.getElementById("recordBtn");
 const sendBtn = document.getElementById("sendBtn");
 const inputText = document.getElementById("inputText");
 const chatArea = document.getElementById("chatArea");
 
-// Nút gửi tin nhắn
+// Gửi tin nhắn và đợi phản hồi từ AI
 sendBtn.addEventListener("click", async () => {
     const text = inputText.value.trim();
     if (!text) return;
@@ -20,7 +19,9 @@ sendBtn.addEventListener("click", async () => {
         });
 
         const data = await response.json();
+        console.log(data);
         appendMessage("Assistant", data.reply);
+        renderSuggestions(data.suggestions);
     } catch (err) {
         console.error("Failed to get response from server:", err);
     }
@@ -53,3 +54,18 @@ function highlightWords(text) {
         return `<span class="word" onclick="showDefinition('${word}')">${word}</span>`;
     });
 };
+
+//Gợi ý câu hỏi
+function renderSuggestions(suggestions) {
+    const container = document.getElementById("suggestions");
+    container.innerHTML = "";
+    for (let i = 0; i < 3; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = suggestions[i].replace(/^\d+\.\s*/, "");
+        btn.className = "btn btn-outline-secondary my-1 text-start";
+        btn.onclick = () => {
+            inputText.value = btn.textContent;
+        };
+        container.appendChild(btn);
+    }
+}
