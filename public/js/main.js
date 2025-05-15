@@ -59,13 +59,13 @@ function highlightWords(text) {
 function renderSuggestions(suggestions) {
     const container = document.getElementById("suggestions");
     container.innerHTML = "";
-    for (let i = 0; i < 3; i++) {
+    suggestions.forEach(suggestion => {
         const btn = document.createElement("button");
-        btn.textContent = suggestions[i].replace(/^\d+\.\s*/, "");
+        btn.textContent = suggestion.replace(/^\d+\.\s*/, "");
         btn.className = "btn btn-outline-secondary my-1 text-start";
         btn.onclick = () => {
             inputText.value = btn.textContent;
         };
         container.appendChild(btn);
-    }
+    });
 }

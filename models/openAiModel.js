@@ -2,7 +2,7 @@ const axios = require("axios");
 const gptModel = {};
 
 gptModel.askGPT = async (message) => {
-    const prompt = `You are an English learning assistant. After answering, suggest 3 related questions that the learner can ask next. Start with the word "Question:". 
+    const prompt = `You are an English learning assistant. After answering, suggest 3 related questions for the learner that the learner can ask next. Start with the word "Question:". 
     User: ${message}`;
 
     const response = await axios.post(
