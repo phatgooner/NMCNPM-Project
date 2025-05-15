@@ -17,9 +17,7 @@ sendBtn.addEventListener("click", async () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: text }),
         });
-
         const data = await response.json();
-        console.log(data);
         appendMessage("Assistant", data.reply);
         renderSuggestions(data.suggestions);
     } catch (err) {
@@ -34,7 +32,6 @@ inputText.addEventListener("keydown", async (e) => {
         sendBtn.click();    // Gọi hàm gửi tin nhắn
     }
 });
-
 
 // Hiển thị tin nhắn và highlight từ
 function appendMessage(sender, message) {
@@ -68,4 +65,4 @@ function renderSuggestions(suggestions) {
         };
         container.appendChild(btn);
     });
-}
+};

@@ -9,21 +9,30 @@ async function showDefinition(word) {
         const entry = result.data[0];
         const meanings = entry.meanings.map(meaning => {
             const defs = meaning.definitions.map(def => `
-                <li><strong>Definition:</strong> ${def.definition}
+                <li class="px-2" style=""><strong>Definition:</strong> ${def.definition}
                 ${def.example ? `<br><em>Example:</em> "${def.example}"` : ""}
                 </li>
             `).join("");
-            return `<p><strong>Part of speech:</strong> ${meaning.partOfSpeech}</p><ul>${defs}</ul>`;
+            return `<p><strong>Part of speech:</strong> ${meaning.partOfSpeech}</p><ol>${defs}</ol>`;
         }).join("");
 
+        let content = '';
         let phonetic = entry.phonetics.find(item => item.audio && item.text);
-        entry.phonetic = phonetic;
 
-        const content = `
-            <p><strong>Word:</strong> ${entry.word}</p>
-            ${entry.phonetic.text ? `<p><strong>Phonetic:</strong> ${entry.phonetic.text} <button class="btn play-audio-btn mb-1" data-audio-url="${entry.phonetic.audio}"> 🔊 </button> </p>` : ""}
-            ${meanings}
-        `;
+        if (phonetic) {
+            entry.phonetic = phonetic;
+            content = `
+                <p><strong>Word:</strong> ${entry.word}</p>
+                ${entry.phonetic.text ? `<p><strong>Phonetic:</strong> ${entry.phonetic.text} <button class="btn play-audio-btn mb-1" data-audio-url="${entry.phonetic.audio}"> 🔊 </button> </p>` : ""}
+                ${meanings}
+            `;
+        } else {
+            content = `
+                <p><strong>Word:</strong> ${entry.word}</p>
+                ${entry.phonetic ? `<p><strong>Phonetic:</strong> ${entry.phonetic}` : ""}
+                ${meanings}
+            `;
+        };
 
         document.getElementById("modalContent").innerHTML = content;
         new bootstrap.Modal(document.getElementById("wordModal")).show();
