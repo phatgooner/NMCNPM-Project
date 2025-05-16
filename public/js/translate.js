@@ -9,8 +9,8 @@ async function showDefinition(word) {
         const entry = result.data[0];
         const meanings = entry.meanings.map(meaning => {
             const defs = meaning.definitions.map(def => `
-                <li class="px-2" style=""><strong>Definition:</strong> ${def.definition}
-                ${def.example ? `<br><em>Example:</em> "${def.example}"` : ""}
+                <li class="px-2"><strong>Definition:</strong> ${def.definition}
+                ${def.example ? `<br><em><span class="text-decoration-underline">Example</span>: "${def.example}"</em>` : ""}
                 </li>
             `).join("");
             return `<p><strong>Part of speech:</strong> ${meaning.partOfSpeech}</p><ol>${defs}</ol>`;
@@ -23,7 +23,7 @@ async function showDefinition(word) {
             entry.phonetic = phonetic;
             content = `
                 <p><strong>Word:</strong> ${entry.word}</p>
-                ${entry.phonetic.text ? `<p><strong>Phonetic:</strong> ${entry.phonetic.text} <button class="btn play-audio-btn mb-1" data-audio-url="${entry.phonetic.audio}"> 🔊 </button> </p>` : ""}
+                ${entry.phonetic.text ? `<p><strong>Phonetic:</strong> ${entry.phonetic.text} <button class="btn play-audio-btn" data-audio-url="${entry.phonetic.audio}"> 🔊 </button> </p>` : ""}
                 ${meanings}
             `;
         } else {

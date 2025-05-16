@@ -38,7 +38,7 @@ function appendMessage(sender, message) {
     const bubble = document.createElement("div");
     bubble.className = `mb-2 p-2 rounded ${sender === "You" ? "bg-primary text-white text-end" : "bg-white border"
         }`;
-    bubble.innerHTML = `<strong>${sender}:</strong> ${highlightWords(message)} <button class="btn btn-sm ms-2 mb-1 speak-btn" data-text="${message}" title="Nghe">
+    bubble.innerHTML = `<strong>${sender}:</strong> ${highlightWords(message)} <button class="btn btn-sm ms-2 speak-btn" data-text="${message}" title="Nghe">
             🔊
         </button>`;
     chatArea.appendChild(bubble);

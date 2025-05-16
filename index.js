@@ -21,15 +21,6 @@ app.engine('hbs', express_handlebars.engine({
     defaultLayout: 'layout',
     runtimeOptions: {
         allowProtoPropertiesByDefault: true
-    },
-    helpers: {
-        formatDate: (date) => {
-            return date.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            });
-        },
     }
 }));
 app.set('view engine', 'hbs');
