@@ -6,7 +6,8 @@ const chatArea = document.getElementById("chatArea");
 sendBtn.addEventListener("click", async () => {
     const text = inputText.value.trim();
     if (!text) return;
-
+    displayChat();
+    unableSubmit(true);
     appendMessage("You", text);
     inputText.value = "";
     chatArea.scrollTop = chatArea.scrollHeight;
@@ -20,10 +21,23 @@ sendBtn.addEventListener("click", async () => {
         const data = await response.json();
         appendMessage("Assistant", data.reply);
         renderSuggestions(data.suggestions);
+        unableSubmit(false);
     } catch (err) {
         console.error("Failed to get response from server:", err);
     }
 });
+
+// Hiển thị khung chat
+function displayChat() {
+    document.getElementById('welcome').hidden = true;
+    chatArea.hidden = false;
+};
+
+// Lock input và button
+function unableSubmit(isUnabled) {
+    sendBtn.disabled = isUnabled;
+    inputText.disabled = isUnabled;
+}
 
 // Gửi tin nhắn bằng phím Enter
 inputText.addEventListener("keydown", async (e) => {
@@ -36,11 +50,14 @@ inputText.addEventListener("keydown", async (e) => {
 // Hiển thị tin nhắn và highlight từ
 function appendMessage(sender, message) {
     const bubble = document.createElement("div");
-    bubble.className = `mb-2 p-2 rounded ${sender === "You" ? "bg-primary text-white text-end" : "bg-white border"
-        }`;
-    bubble.innerHTML = `<strong>${sender}:</strong> ${highlightWords(message)} <button class="btn btn-sm ms-2 speak-btn" data-text="${message}" title="Nghe">
-            🔊
-        </button>`;
+    if (sender === 'You') {
+        bubble.className = 'my-4 text-end right-middle';
+        bubble.innerHTML = `<button class="btn btn-sm speak-btn" data-text="${message}" title="Nghe">🔊</button> <div class='text-justify chat-bubble text-start d-inline-block px-4 py-2 rounded-pill text-break bg-primary'>${highlightWords(message)}</div>`;
+    }
+    else {
+        bubble.className = 'my-4';
+        bubble.innerHTML = `<div class='text-justify bg-white'>${highlightWords(message)}<button style="margin-bottom:3px" class="speak-btn btn btn-sm ms-2" data-text="${message}" title="Nghe">🔊</button></div>`;
+    };
     chatArea.appendChild(bubble);
     chatArea.scrollTop = chatArea.scrollHeight;
 };

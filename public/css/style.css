@@ -1,15 +1,55 @@
+.right-middle {
+    /* Căn giữa nội dung bên trong theo chiều dọc bên phải */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.horizontal-center {
+    /* Căn giữa nội dung bên trong theo chiều ngang */
+    display: flex;
+    justify-content: center;
+}
+
 .bg-primary {
-    background-color: dodgerblue !important;
-    border-color: dodgerblue !important;
+    background-color: #E9E9E980 !important;
+    border-color: #E9E9E980 !important;
+}
+
+.btn-primary {
+    background-color: white !important;
+    border-color: #989898 !important;
+    color: black;
+}
+
+.btn-primary:hover {
+    background-color: #98989880 !important;
+    border-color: #98989880 !important;
+    color: black;
+}
+
+button:disabled {
+    color: black !important;
 }
 
 .chat-area {
-    height: 500px;
+    height: 450px;
     overflow-y: auto;
-    background-color: #f8f9fa;
+    scrollbar-width: none;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+#inputText {
     padding: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #dee2e6;
+    border-radius: 2rem;
+}
+
+#inputText:focus {
+    box-shadow: none;
+    border-color: grey;
 }
 
 .word {
@@ -21,6 +61,10 @@
     margin-bottom: 2.5px;
 }
 
-.speak-btn {
-    margin-bottom: 3px;
+#welcome {
+    margin-top: 25%;
+}
+
+.chat-bubble {
+    max-width: 70%;
 }
