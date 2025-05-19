@@ -22,10 +22,22 @@
     color: black;
 }
 
+.btn-secondary {
+    background-color: black !important;
+    border-color: black !important;
+    color: white;
+}
+
 .btn-primary:hover {
     background-color: #98989880 !important;
     border-color: #98989880 !important;
     color: black;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border-color: rgba(0, 0, 0, 0.25) !important;
+    color: white;
 }
 
 button:disabled {
@@ -45,16 +57,17 @@ button:disabled {
 #inputText {
     padding: 1rem;
     border-radius: 2rem;
+    border-color: #98989880;
 }
 
 #inputText:focus {
     box-shadow: none;
-    border-color: grey;
+    border-color: rgba(0, 0, 0, 0.75);
 }
 
 .word {
     cursor: pointer;
-    border-bottom: 1px dotted red;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.6);
 }
 
 .play-audio-btn {
@@ -62,9 +75,111 @@ button:disabled {
 }
 
 #welcome {
-    margin-top: 25%;
+    margin-top: 250px;
 }
 
 .chat-bubble {
     max-width: 70%;
+}
+
+#suggestions {
+    max-height: 220px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+#login {
+    position: relative;
+    padding: 45px 0;
+}
+
+#login .container {
+    max-width: 900px;
+}
+
+#login .login-form {
+    position: relative;
+}
+
+#login .login-form .control-group {
+    margin-bottom: 15px;
+}
+
+#login .login-form label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#login .login-form input[type="text"],
+#login .login-form input[type="email"],
+#login .login-form input[type="password"] {
+    height: 35px;
+    font-size: 16px;
+    font-weight: 400;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    border-radius: 0;
+}
+
+#login .login-form input[type="text"]:focus,
+#login .login-form input[type="email"]:focus,
+#login .login-form input[type="password"]:focus {
+    border-color: black;
+}
+
+#login .login-form button {
+    display: inline-block;
+    padding: 8px 30px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+#register {
+    position: relative;
+    padding: 45px 0;
+}
+
+#register .container {
+    max-width: 900px;
+}
+
+#register .login-form {
+    position: relative;
+}
+
+#register .login-form .control-group {
+    margin-bottom: 15px;
+}
+
+#register .login-form label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#register .login-form input[type="text"],
+#register .login-form input[type="email"],
+#register .login-form input[type="password"] {
+    height: 35px;
+    font-size: 16px;
+    font-weight: 400;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    border-radius: 0;
+}
+
+#register .login-form input[type="text"]:focus,
+#register .login-form input[type="email"]:focus,
+#register .login-form input[type="password"]:focus {
+    border-color: black;
+}
+
+#register .login-form button {
+    display: inline-block;
+    padding: 8px 30px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 15px;
 }

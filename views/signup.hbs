@@ -1,0 +1,44 @@
+<div id="register">
+    <div class="horizontal-center">
+        <h2>Create an account</h2>
+    </div>
+    <div class="container horizontal-center">
+        <div class="row w-50">
+            <div class="col-12">
+                <div class="login-form">
+                    <form onsubmit="userRegister(event)" id="registerForm">
+                        <div class="form-row">
+                            <div class="form-floating control-group col-12 my-4">
+                                <input id="floatingInput" type="text" class="form-control" required="required"
+                                    name="name" placeholder="Write your full name" />
+                                <label for="floatingInput">Full Name</label>
+                            </div>
+                            <div class="form-floating control-group col-12 my-4">
+                                <input id="email" type="email" class="form-control" required="required" name="email"
+                                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="Write your email" />
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-floating control-group col-12 my-4">
+                                <input id="password" type="password" class="form-control" required="required"
+                                    name="password" onchange="checkPasswordConfirm('registerForm')"
+                                    placeholder="New password" />
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="form-floating control-group col-12 my-4">
+                                <input id="confirmPassword" type="password" class="form-control" required="required"
+                                    name="confirmPassword" onkeyup="checkPasswordConfirm('registerForm')"
+                                    placeholder="Confirm your password" />
+                                <label for="confirmPassword">Confirm password</label>
+                            </div>
+                            <div class="text-danger my-2" id="errorMessage"></div>
+                        </div>
+                        <div class="button text-center mt-4"><button type="submit"
+                                class="btn btn-secondary">Register</button></div>
+                        <p class="text-center">Already have an account? <a href="/login"
+                                class="text-decoration-none text-black fw-bold">Login here!</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

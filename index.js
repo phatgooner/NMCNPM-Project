@@ -27,6 +27,7 @@ app.set('view engine', 'hbs');
 
 //Chuyển hướng sang Router
 app.use('/', require('./routes/indexRouter'));
+app.use('/users', require('./routes/usersRouter'));
 
 //Khởi động server
 app.listen(port, () => {
