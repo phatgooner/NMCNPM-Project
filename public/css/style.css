@@ -183,3 +183,12 @@ button:disabled {
     cursor: pointer;
     margin-bottom: 15px;
 }
+
+.dropdown-item {
+    padding: 0 1rem;
+}
+
+.no-arrow::after {
+    display: none !important;
+    /* Ẩn mũi tên của Bootstrap */
+}

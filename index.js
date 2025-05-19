@@ -29,6 +29,16 @@ app.set('view engine', 'hbs');
 app.use('/', require('./routes/indexRouter'));
 app.use('/users', require('./routes/usersRouter'));
 
+//Bắt lỗi
+app.use((req, res, next) => {
+    res.status(404).render('error', { message: 'Page Not Found!', status: 404 });
+});
+
+app.use((error, req, res, next) => {
+    console.error(error);
+    res.status(500).render('error', { message: 'Internal Server Error!', status: 500 });
+});
+
 //Khởi động server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}...`);
