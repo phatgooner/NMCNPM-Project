@@ -24,34 +24,53 @@
 </head>
 
 <body>
+    {{#if homepage}}
+    {{>sidebar}}
+    {{#if user}}
+    <div id="mainContent" style="margin-left: 250px; transition: margin-left 0.3s;">
+        <header>
+            <nav class="navbar px-4 py-4">
+                <!-- Toggle Button -->
+                <button id="toggleSidebarBtn" class="btn position-fixed">
+                    <i class="bi bi-layout-text-sidebar h3 text-black-50"></i>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <h4 class="ms-4"><i class="bi bi-translate mx-3"></i>English Learning Assistant</h4>
+                </a>
+            </nav>
+        </header>
+        {{{body}}}
+    </div>
+    {{else}}
+    <div id="mainContent">
+        <header>
+            <nav class="navbar px-4 py-4">
+                <a class="navbar-brand" href="/">
+                    <h4 class="ms-4"><i class="bi bi-translate mx-3"></i>English Learning Assistant</h4>
+                </a>
+                <div class="ms-auto" id="link-login">
+                    <button class="btn btn-secondary px-3 me-2 rounded-5"
+                        onclick="location.href = '/login'">Login</button>
+                    <button class="btn btn-primary px-3 me-4 rounded-5" onclick="location.href = '/signup'">Sign
+                        Up</button>
+                </div>
+            </nav>
+        </header>
+        {{{body}}}
+    </div>
+    {{/if}}
+    {{else}}
     {{#unless message}}
     <header>
         <nav class="navbar px-4 py-4">
             <a class="navbar-brand" href="/">
-                <h3 class="mb-0"><i class="bi bi-translate mx-3"></i>English Learning Assistant</h3>
+                <h4 class="ms-4"><i class="bi bi-translate mx-3"></i>English Learning Assistant</h4>
             </a>
-            {{#if homepage}}
-            <div class="ms-auto" id="link-login">
-                <button class="btn btn-secondary px-3 me-2 rounded-5" onclick="location.href = '/login'">Login</button>
-                <button class="btn btn-primary px-3 me-2 rounded-5" onclick="location.href = '/signup'">Sign Up</button>
-            </div>
-            {{/if}}
-            <div id="link-user" class="nav-item dropdown me-2 mt-1" style="display: none;">
-                <a href="#" class="nav-link no-arrow dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-bs-expanded="false">Xin chào <span id="user-name"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" onclick="logout()">Đăng xuất</a></li>
-                </ul>
-            </div>
         </nav>
     </header>
     {{/unless}}
-    <main>
-        {{{body}}}
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
+    {{{body}}}
+    {{/if}}
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -67,10 +86,8 @@
     <script src="/js/translate.js"></script>
     <script src="/js/login.js"></script>
     <script src="/js/register.js"></script>
+    <script src="/js/sidebar.js"></script>
 
-    <script>
-        checkLogin();        
-    </script>
 </body>
 
 </html>

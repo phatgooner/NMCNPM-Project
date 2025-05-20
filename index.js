@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const express_handlebars = require('express-handlebars');
+const session = require('express-session');
 
 //Cấu hình public static folder
 app.use(express.static(__dirname + '/public'));
@@ -24,6 +25,17 @@ app.engine('hbs', express_handlebars.engine({
     }
 }));
 app.set('view engine', 'hbs');
+
+//Cấu hình session
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 20 * 60 * 1000 //20 phút
+    }
+}));
 
 //Chuyển hướng sang Router
 app.use('/', require('./routes/indexRouter'));

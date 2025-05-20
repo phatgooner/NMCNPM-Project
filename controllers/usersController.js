@@ -13,6 +13,7 @@ controller.login = (req, res) => {
     if (user) {
         result = JSON.parse(JSON.stringify(user));
         result.isUser = true;
+        req.session.userId = user.id;
     }
     let jsonString = JSON.stringify(result);
     res.send(jsonString);
@@ -41,6 +42,29 @@ controller.register = async (req, res) => {
     }
     let jsonString = JSON.stringify(result);
     res.send(jsonString);
+};
+
+controller.show = (req, res) => {
+    let userId = req.session.userId;
+    let homepage = true;
+    if (!userId) {
+        res.render("index", { homepage });
+    } else {
+        let userList = users.readAll();
+        let user = userList.find(item => item.id == userId);
+        res.render("index", { homepage, user });
+    }
+};
+
+controller.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log("Logout error:", err);
+            res.status(500).send("Logout error");
+        } else {
+            res.redirect("/");
+        }
+    });
 };
 
 module.exports = controller;

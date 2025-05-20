@@ -1,0 +1,33 @@
+<!-- Sidebar -->
+{{#with user}}
+<div id="sidebar" class="sidebar bg-light border-end position-fixed h-100 p-3"
+    style="width: 250px; transition: transform 0.3s;">
+    <button class="btn btn-outline-secondary" id="newChatBtn"><i class="bi bi-pencil-square me-3"></i>New chat</button>
+    <div class="d-flex align-items-center position-absolute" id="userInfo">
+        <div class="position-relative">
+            <img class="rounded-circle" src="/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+            </div>
+        </div>
+        <div class="mx-3">
+            <h6 class="mb-0 mt-1" style="width: 150px">{{name}}</h6>
+            <span>User</span>
+        </div>
+    </div>
+    <h5 id="chatHistory">Chats History</h5>
+    <div class="chat_sidebar_item">
+        <ul>
+            <li>
+                <div class="btn text-start d-inline-block rounded-3 text-break"><a href="/">Vocab Q&amp;A</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="sidebarFooter">
+        <hr>
+        <div class="mt-auto">
+            <button class="btn btn-outline-secondary w-100" onclick="logout()">Logout</button>
+        </div>
+    </div>
+</div>
+{{/with}}

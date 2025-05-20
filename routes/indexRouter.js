@@ -4,14 +4,17 @@ const express = require('express');
 const router = express.Router();
 const chatController = require('../controllers/chatController');
 const translateController = require('../controllers/translateController');
+const usersController = require('../controllers/usersController');
 
-router.get('/', (req, res) => {
-    let homepage = true;
-    res.render("index", { homepage });
-});
+router.get('/', usersController.show);
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    let id = req.session.userId;
+    if (id) {
+        res.redirect('/');
+    } else {
+        res.render('login');
+    }
 });
 
 router.get('/signup', (req, res) => {

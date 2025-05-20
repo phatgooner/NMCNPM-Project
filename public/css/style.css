@@ -192,3 +192,79 @@ button:disabled {
     display: none !important;
     /* Ẩn mũi tên của Bootstrap */
 }
+
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    overflow-y: auto;
+    border-right: 1px solid #dee2e6;
+}
+
+/* When sidebar is hidden */
+#sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+/* Shift content when sidebar hidden */
+#mainContent.expanded {
+    margin-left: 0 !important;
+}
+
+#toggleSidebarBtn {
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    margin: 19px 0 0 10px;
+}
+
+#newChatBtn {
+    position: absolute;
+    right: 0;
+    margin-top: 8px;
+    margin-right: 15px;
+}
+
+#userInfo {
+    margin-top: 100px;
+}
+
+#sidebarFooter {
+    position: absolute;
+    bottom: 0;
+    width: 86%;
+    margin-bottom: 10px;
+}
+
+.sidebar #chatHistory {
+    margin-top: 180px;
+}
+
+.chat_sidebar_item {
+    max-height: 650px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.sidebar div.btn {
+    width: 100%;
+}
+
+.sidebar div.btn:hover {
+    background-color: #66666630;
+}
+
+.chat_sidebar_item ul {
+    padding: 0;
+}
+
+.chat_sidebar_item ul li {
+    list-style: none;
+}
+
+.chat_sidebar_item ul li a {
+    text-decoration: none;
+    line-height: 1;
+    color: #666666;
+}
