@@ -2,6 +2,7 @@
 
 const controller = {};
 const users = require('../models/user');
+const chatModel = require("../models/chat");
 
 // Xử lý đăng nhập người dùng => thành công thì trả về chuỗi JSON người dùng
 controller.login = (req, res) => {
@@ -51,7 +52,15 @@ controller.show = (req, res) => {
         res.render("index", { homepage });
     } else {
         let userList = users.readAll();
+        let chatList = chatModel.readAll();
+        let chats = [];
+        chatList.forEach(chat => {
+            if (chat.user_id == userId) {
+                chats.push(chat);
+            }
+        });
         let user = userList.find(item => item.id == userId);
+        user.chats = chats;
         res.render("index", { homepage, user });
     }
 };

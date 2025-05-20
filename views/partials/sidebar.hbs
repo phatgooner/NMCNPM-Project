@@ -17,10 +17,12 @@
     <h5 id="chatHistory">Chats History</h5>
     <div class="chat_sidebar_item">
         <ul>
+            {{#each chats}}
             <li>
-                <div class="btn text-start d-inline-block rounded-3 text-break"><a href="/">Vocab Q&amp;A</a>
+                <div class="btn text-start d-inline-block rounded-3 text-break"><a href="/">{{name}}</a>
                 </div>
             </li>
+            {{/each}}
         </ul>
     </div>
     <div id="sidebarFooter">
