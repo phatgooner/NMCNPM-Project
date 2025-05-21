@@ -43,4 +43,21 @@ chat.updatechat = (chat) => {
     });
 }
 
+chat.findAllByUser = (userId) => {
+    let chatList = chat.readAll();
+    let chats = [];
+    chatList.forEach(item => {
+        if (item.user_id == userId && item.isDeleted == false) {
+            chats.push(item);
+        }
+    });
+    return chats;
+};
+
+chat.findOne = (chatId) => {
+    let chatList = chat.readAll();
+    let result = chatList.find(item => item.id == chatId && item.isDeleted == false);
+    return result;
+}
+
 module.exports = chat;

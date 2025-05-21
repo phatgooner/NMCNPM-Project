@@ -22,6 +22,14 @@ app.engine('hbs', express_handlebars.engine({
     defaultLayout: 'layout',
     runtimeOptions: {
         allowProtoPropertiesByDefault: true
+    },
+    helpers: {
+        eq: (a, b) => a === b,
+        highlightWords: (text) => {
+            return text.replace(/\b([\p{L}\p{M}]+)\b/gu, (word) => {
+                return `<span class="word" onclick="showDefinition('${word}')">${word}</span>`;
+            });
+        }
     }
 }));
 app.set('view engine', 'hbs');

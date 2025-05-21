@@ -1,11 +1,19 @@
-<div id="welcome" class="text-center mb-4">
-    <h3>What can I help with?</h3>
-</div>
-
 <div class="container py-2 w-50">
     <!-- Chat box -->
-    <div id="chatArea" class="chat-area p-2 mb-3" hidden>
-        <!-- Messages will appear here -->
+    <div id="chatArea" class="chat-area p-2 mb-3" data-id="{{chatId}}">
+        {{#each conversations}}
+        <div class="my-4{{#if (eq this.role 'user')}}text-end right-middle{{/if}}">
+            {{#if (eq this.role 'user')}}
+            <button class="btn btn-sm speak-btn" data-text="{{message}}" title="Nghe">🔊</button>
+            <div
+                class='text-justify chat-bubble text-start d-inline-block px-4 py-2 rounded-pill text-break bg-primary'>
+                {{{highlightWords message}}}</div>
+            {{else}}
+            <div class='text-justify bg-white'>{{{highlightWords message}}}<button style="margin-bottom:3px"
+                    class="speak-btn btn btn-sm ms-2" data-text="{{message}}" title="Nghe">🔊</button></div>
+            {{/if}}
+        </div>
+        {{/each}}
     </div>
 
     <!-- Input -->
@@ -39,4 +47,19 @@
     </div>
 </div>
 
-<script src="/js/main.js"></script>
+<script src="/js/chat-history.js"></script>
+
+<script>
+    const suggestions = document.getElementById('suggestions');
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatArea = document.getElementById('chatArea');
+        if (chatArea) {
+            chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
+        }
+    });
+
+    window.onload = () => {
+        document.getElementById('chatArea').style = 'height: 650px';
+    }
+
+</script>

@@ -51,15 +51,8 @@ controller.show = (req, res) => {
     if (!userId) {
         res.render("index", { homepage });
     } else {
-        let userList = users.readAll();
-        let chatList = chatModel.readAll();
-        let chats = [];
-        chatList.forEach(chat => {
-            if (chat.user_id == userId) {
-                chats.push(chat);
-            }
-        });
-        let user = userList.find(item => item.id == userId);
+        let chats = chatModel.findAllByUser(userId);
+        let user = users.findOne(userId);
         user.chats = chats;
         res.render("index", { homepage, user });
     }
@@ -75,5 +68,79 @@ controller.logout = (req, res) => {
         }
     });
 };
+
+controller.chat = (req, res) => {
+    let chatId = req.params.id;
+    let result = chatModel.findOne(chatId);
+    if (result.user_id != req.session.userId) {
+        res.redirect('/');
+    } else {
+        let conversations = result.conversation;
+        let homepage = true;
+        let user = users.findOne(req.session.userId);
+        let chats = chatModel.findAllByUser(req.session.userId);
+        user.chats = chats;
+        res.render('chat', { chats, homepage, user, conversations, chatId });
+    }
+}
+
+controller.saveMessage = (req, res) => {
+    let { chatId, role, message } = req.body;
+    let chat = chatModel.findOne(chatId);
+    let result = { isSuccess: false };
+    if (chat) {
+        result.isSuccess = true;
+        let conversation = {
+            role,
+            message
+        }
+        chat.conversation.push(conversation);
+        try {
+            chatModel.updatechat(chat);
+        } catch (err) {
+            result.isSuccess = false;
+            console.log(err);
+        }
+    }
+    let jsonString = JSON.stringify(result);
+    res.send(jsonString);
+};
+
+controller.renameChat = (req, res) => {
+    let newName = req.body.title;
+    let chatId = req.params.id;
+    let chat = chatModel.findOne(chatId);
+    let result = { isSuccess: false };
+    if (chat) {
+        result.isSuccess = true;
+        chat.name = newName;
+        try {
+            chatModel.updatechat(chat);
+        } catch (err) {
+            result.isSuccess = false;
+            console.log(err);
+        }
+    };
+    let jsonString = JSON.stringify(result);
+    res.send(jsonString);
+};
+
+controller.deleteChat = (req, res) => {
+    let chatId = req.params.id;
+    let chat = chatModel.findOne(chatId);
+    let result = { isSuccess: false };
+    if (chat) {
+        result.isSuccess = true;
+        chat.isDeleted = true;
+        try {
+            chatModel.updatechat(chat);
+        } catch (err) {
+            result.isSuccess = false;
+            console.log(err);
+        }
+    };
+    let jsonString = JSON.stringify(result);
+    res.send(jsonString);
+}
 
 module.exports = controller;

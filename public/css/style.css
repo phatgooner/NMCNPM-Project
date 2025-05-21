@@ -269,3 +269,36 @@ button:disabled {
     line-height: 1;
     color: #666666;
 }
+
+.dropdown-item {
+    line-height: 2;
+}
+
+.dropdown-item:hover {
+    background-color: #dbddde;
+}
+
+.dropdown-item:active {
+    color: grey;
+}
+
+.text-red {
+    color: red !important;
+}
+
+.dropdown-menu {
+    background-color: #f8f9fa;
+}
+
+input#newTitle {
+    height: 35px;
+    font-size: 16px;
+    font-weight: 400;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    border-radius: 0;
+}
+
+input#newTitle:focus {
+    border-color: black;
+}

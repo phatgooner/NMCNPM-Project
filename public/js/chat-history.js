@@ -6,12 +6,11 @@ const chatArea = document.getElementById("chatArea");
 sendBtn.addEventListener("click", async () => {
     const text = inputText.value.trim();
     if (!text) return;
-    displayChat();
     unableSubmit(true);
     appendMessage("You", text);
     inputText.value = "";
     chatArea.scrollTop = chatArea.scrollHeight;
-
+    await saveMessage(chatArea.getAttribute("data-id"), "user", text);
     try {
         const response = await fetch("/chat", {
             method: "POST",
@@ -21,17 +20,14 @@ sendBtn.addEventListener("click", async () => {
         const data = await response.json();
         appendMessage("Assistant", data.reply);
         renderSuggestions(data.suggestions);
+        chatArea.style = 'height: 450px';
+        chatArea.scrollTop = chatArea.scrollHeight;
         unableSubmit(false);
+        await saveMessage(chatArea.getAttribute("data-id"), "assistant", data.reply);
     } catch (err) {
         console.error("Failed to get response from server:", err);
     }
 });
-
-// Hiển thị khung chat
-function displayChat() {
-    document.getElementById('welcome').hidden = true;
-    chatArea.hidden = false;
-};
 
 // Lock input và button
 function unableSubmit(isUnabled) {
@@ -82,4 +78,26 @@ function renderSuggestions(suggestions) {
         };
         container.appendChild(btn);
     });
+};
+
+//Lưu tin nhắn vào CSDL sau khi nhắn
+async function saveMessage(chatId, role, message) {
+    let chat = {
+        chatId, role, message
+    };
+    let id = 'users/chat/save';
+    let address = `http://localhost:3000/${id}`;
+    let res = await fetch(address,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(chat)
+        }
+    );
+    let result = res.json();
+    if (result.isSuccess) {
+        return;
+    };
 };

@@ -50,6 +50,12 @@ user.updateUser = (user) => {
             return true;
         }
     });
+};
+
+user.findOne = (userId) => {
+    let userList = user.readAll();
+    let result = userList.find(item => item.id == userId);
+    return result;
 }
 
 module.exports = user;

@@ -2,7 +2,8 @@
 {{#with user}}
 <div id="sidebar" class="sidebar bg-light border-end position-fixed h-100 p-3"
     style="width: 250px; transition: transform 0.3s;">
-    <button class="btn btn-outline-secondary" id="newChatBtn"><i class="bi bi-pencil-square me-3"></i>New chat</button>
+    <button class="btn btn-outline-secondary" id="newChatBtn" onclick="location.href='/'"><i
+            class="bi bi-pencil-square me-3"></i>New chat</button>
     <div class="d-flex align-items-center position-absolute" id="userInfo">
         <div class="position-relative">
             <img class="rounded-circle" src="/img/user.jpg" alt="" style="width: 40px; height: 40px;">
@@ -19,7 +20,17 @@
         <ul>
             {{#each chats}}
             <li>
-                <div class="btn text-start d-inline-block rounded-3 text-break"><a href="/">{{name}}</a>
+                <div class="btn text-start d-inline-block rounded-3 text-break">
+                    <a href="/users/chat/{{id}}">{{name}}</a> <i
+                        class="dropdown-toggle text-black-50 bi bi-three-dots float-end no-arrow" type="button"
+                        id="triggerId" data-bs-toggle="dropdown" aria-bs-haspopup="true" aria-bs-expanded="false"></i>
+                    <div class="dropdown-menu" aria-bs-labelledby="triggerId">
+                        <button class="dropdown-item" href="#" id="rename" data-id="{{id}}" data-name="{{name}}"
+                            data-bs-toggle="modal" data-bs-target="#chatOptionsModal"><i
+                                class="bi bi-pencil-fill me-4"></i>Rename</button>
+                        <button class="dropdown-item text-red" href="#" id="deleteChatBtn" data-id="{{id}}"
+                            data-name="{{name}}"><i class="bi bi-trash me-4"></i>Delete</button>
+                    </div>
                 </div>
             </li>
             {{/each}}
@@ -28,8 +39,31 @@
     <div id="sidebarFooter">
         <hr>
         <div class="mt-auto">
-            <button class="btn btn-outline-secondary w-100" onclick="logout()">Logout</button>
+            <button class="btn btn-outline-secondary w-100 pe-4" onclick="logout()"><i
+                    class="bi bi-box-arrow-left me-4"></i>Logout</button>
         </div>
     </div>
 </div>
 {{/with}}
+
+<div class="modal fade" id="chatOptionsModal" tabindex="-1" aria-labelledby="chatOptionsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chatOptionsLabel">Chat Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="renameForm">
+                    <input type="hidden" id="chatId" />
+                    <div class="mb-3">
+                        <label for="newTitle" class="form-label">Rename Chat</label>
+                        <input type="text" class="form-control" id="newTitle" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Rename</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
