@@ -45,6 +45,14 @@ controller.register = async (req, res) => {
     res.send(jsonString);
 };
 
+controller.auth = (req, res, next) => {
+    let userId = req.session.userId;
+    if (!userId) {
+        return res.redirect('/');
+    }
+    next();
+}
+
 controller.show = (req, res) => {
     let userId = req.session.userId;
     let homepage = true;

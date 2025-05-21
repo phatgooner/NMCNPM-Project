@@ -110,5 +110,4 @@ async function saveMessage(chatId, role, message) {
     let id = chatArea.getAttribute("data-id");
     let link = document.querySelector(`.sidebar #chat-${id}`);
     link.classList.add('active');
-    console.log(link);
 })();

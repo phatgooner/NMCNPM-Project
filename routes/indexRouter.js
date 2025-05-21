@@ -18,7 +18,12 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.render('signup');
+    let id = req.session.userId;
+    if (id) {
+        res.redirect('/');
+    } else {
+        res.render('signup');
+    }
 });
 
 router.post('/chat', chatController.handleChat);

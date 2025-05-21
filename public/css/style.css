@@ -275,6 +275,12 @@ button:disabled {
     color: #666666;
 }
 
+.chat_sidebar_item i.dropdown-toggle {
+    position: absolute;
+    right: 0;
+    margin: 6px 24px 0 0;
+}
+
 .dropdown-item {
     line-height: 2;
 }
@@ -293,6 +299,7 @@ button:disabled {
 
 .dropdown-menu {
     background-color: #f8f9fa;
+    position: absolute;
 }
 
 input#newTitle {
