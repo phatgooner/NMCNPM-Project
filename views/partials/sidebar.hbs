@@ -20,8 +20,9 @@
         <ul>
             {{#each chats}}
             <li>
-                <div class="btn text-start d-inline-block rounded-3 text-break">
-                    <a href="/users/chat/{{id}}">{{name}}</a> <i
+                <div class="btn text-start d-inline-block rounded-3 text-break" id="chat-{{id}}"
+                    onclick="location.href='/users/chat/{{id}}'">
+                    <a href="#">{{name}}</a> <i
                         class="dropdown-toggle text-black-50 bi bi-three-dots float-end no-arrow" type="button"
                         id="triggerId" data-bs-toggle="dropdown" aria-bs-haspopup="true" aria-bs-expanded="false"></i>
                     <div class="dropdown-menu" aria-bs-labelledby="triggerId">

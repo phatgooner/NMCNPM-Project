@@ -101,3 +101,14 @@ async function saveMessage(chatId, role, message) {
         return;
     };
 };
+
+(function activeChat() {
+    let chatBtnList = document.querySelectorAll('.sidebar div.btn');
+    chatBtnList.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    let id = chatArea.getAttribute("data-id");
+    let link = document.querySelector(`.sidebar #chat-${id}`);
+    link.classList.add('active');
+    console.log(link);
+})();

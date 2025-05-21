@@ -256,6 +256,11 @@ button:disabled {
     background-color: #66666630;
 }
 
+.sidebar div.btn.active {
+    background-color: #66666630;
+    border: none;
+}
+
 .chat_sidebar_item ul {
     padding: 0;
 }
