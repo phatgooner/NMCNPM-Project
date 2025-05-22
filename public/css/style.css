@@ -22,8 +22,20 @@
     color: black;
 }
 
+.btn-primary:focus {
+    box-shadow: none;
+    border-color: black !important;
+    color: black;
+}
+
 .btn-secondary {
     background-color: black !important;
+    border-color: black !important;
+    color: white;
+}
+
+.btn-secondary:focus {
+    box-shadow: none;
     border-color: black !important;
     color: white;
 }

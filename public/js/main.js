@@ -5,6 +5,8 @@ const chatArea = document.getElementById("chatArea");
 // Gửi tin nhắn và đợi phản hồi từ AI
 sendBtn.addEventListener("click", async () => {
     const text = inputText.value.trim();
+    let userId = chatArea.getAttribute('data-id');
+
     if (!text) return;
     displayChat();
     unableSubmit(true);
@@ -20,8 +22,13 @@ sendBtn.addEventListener("click", async () => {
         });
         const data = await response.json();
         appendMessage("Assistant", data.reply);
-        renderSuggestions(data.suggestions);
-        unableSubmit(false);
+        if (userId) {
+            await createNewChat(text, data.reply);
+        } else {
+            renderSuggestions(data.suggestions);
+            chatArea.style = 'height: 450px';
+            unableSubmit(false);
+        }
     } catch (err) {
         console.error("Failed to get response from server:", err);
     }
@@ -31,6 +38,7 @@ sendBtn.addEventListener("click", async () => {
 function displayChat() {
     document.getElementById('welcome').hidden = true;
     chatArea.hidden = false;
+    chatArea.style = 'height: 650px';
 };
 
 // Lock input và button
@@ -83,3 +91,22 @@ function renderSuggestions(suggestions) {
         container.appendChild(btn);
     });
 };
+
+async function createNewChat(userMessage, assistantMessage) {
+    let conversation = {
+        userMessage,
+        assistantMessage
+    }
+    let res = await fetch("/users/chat/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(conversation),
+    });
+    let result = await res.json();
+    if (result.isSuccess) {
+        location.href = `/users/chat/${result.newChatId}`
+    }
+    else {
+        location.href = '/';
+    }
+}

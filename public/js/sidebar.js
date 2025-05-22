@@ -5,7 +5,7 @@ const mainContent = document.getElementById("mainContent");
 const modal = document.getElementById("chatOptionsModal");
 const chatIdInput = document.getElementById("chatId");
 const newTitleInput = document.getElementById("newTitle");
-const deleteBtn = document.getElementById("deleteChatBtn");
+const deleteBtnList = document.querySelectorAll("#deleteChatBtn");
 const renameForm = document.getElementById("renameForm");
 
 
@@ -44,16 +44,19 @@ renameForm.addEventListener("submit", async (e) => {
 });
 
 // Gửi yêu cầu xóa chat
-deleteBtn.addEventListener("click", async () => {
-    const chatId = deleteBtn.getAttribute("data-id");
+deleteBtnList.forEach(deleteBtn => {
+    deleteBtn.addEventListener("click", async () => {
+        const chatId = deleteBtn.getAttribute("data-id");
 
-    if (confirm("Are you sure you want to delete this chat?")) {
-        let res = await fetch(`/users/chat/delete/${chatId}`, {
-            method: "DELETE",
-        });
-        let result = await res.json();
-        if (result.isSuccess) {
-            location.href = '/';
+        if (confirm("Are you sure you want to delete this chat?")) {
+            let res = await fetch(`/users/chat/delete/${chatId}`, {
+                method: "DELETE",
+            });
+            let result = await res.json();
+            if (result.isSuccess) {
+                location.href = '/';
+            };
         };
-    };
-});
+    });
+})
+

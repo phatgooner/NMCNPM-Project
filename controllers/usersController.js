@@ -80,7 +80,7 @@ controller.logout = (req, res) => {
 controller.chat = (req, res) => {
     let chatId = req.params.id;
     let result = chatModel.findOne(chatId);
-    if (result.user_id != req.session.userId) {
+    if (!result || result.user_id != req.session.userId) {
         res.redirect('/');
     } else {
         let conversations = result.conversation;
@@ -147,6 +147,36 @@ controller.deleteChat = (req, res) => {
             console.log(err);
         }
     };
+    let jsonString = JSON.stringify(result);
+    res.send(jsonString);
+};
+
+controller.createChat = (req, res) => {
+    let user = req.body.userMessage;
+    let assistant = req.body.assistantMessage;
+    let newChat = {
+        id: chatModel.newId(),
+        user_id: req.session.userId,
+        name: "New Chat",
+        conversation: [
+            {
+                role: "user",
+                message: user
+            },
+            {
+                role: "assistant",
+                message: assistant
+            }
+        ],
+        isDeleted: false
+    }
+    let result = { isSuccess: true, newChatId: newChat.id };
+    try {
+        chatModel.createNewChat(newChat);
+    } catch (err) {
+        result.isSuccess = false;
+        console.log(err);
+    }
     let jsonString = JSON.stringify(result);
     res.send(jsonString);
 }
