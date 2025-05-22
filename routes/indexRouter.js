@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const chatController = require('../controllers/chatController');
+const openAiController = require('../controllers/openAiController');
 const translateController = require('../controllers/translateController');
 const usersController = require('../controllers/usersController');
 
@@ -26,7 +26,7 @@ router.get('/signup', (req, res) => {
     }
 });
 
-router.post('/chat', chatController.handleChat);
+router.post('/chat', openAiController.handleChat);
 router.get('/translate/:word', translateController.translateWord);
 
 module.exports = router;

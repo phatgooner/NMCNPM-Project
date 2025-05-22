@@ -1,6 +1,6 @@
 <div class="container py-2 w-50">
     <!-- Chat box -->
-    <div id="chatArea" class="chat-area p-2 mb-3" data-id="{{chatId}}">
+    <div id="chatArea" class="chat-area p-2 mb-3" data-id="{{chatId}}" style="height: 650px">
         {{#each conversations}}
         <div class="my-4{{#if (eq this.role 'user')}}text-end right-middle{{/if}}">
             {{#if (eq this.role 'user')}}
@@ -57,9 +57,5 @@
             chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
         }
     });
-
-    window.onload = () => {
-        document.getElementById('chatArea').style = 'height: 650px';
-    }
 
 </script>

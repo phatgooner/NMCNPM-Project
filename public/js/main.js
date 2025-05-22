@@ -38,7 +38,9 @@ sendBtn.addEventListener("click", async () => {
 function displayChat() {
     document.getElementById('welcome').hidden = true;
     chatArea.hidden = false;
-    chatArea.style = 'height: 650px';
+    if (chatArea.getAttribute('data-id')) {
+        chatArea.style = 'height: 650px';
+    };
 };
 
 // Lock input và button

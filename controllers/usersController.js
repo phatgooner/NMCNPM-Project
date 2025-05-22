@@ -61,7 +61,7 @@ controller.show = (req, res) => {
     } else {
         let chats = chatModel.findAllByUser(userId);
         let user = users.findOne(userId);
-        user.chats = chats;
+        user.chats = chats.slice().reverse();
         res.render("index", { homepage, user });
     }
 };
@@ -87,8 +87,8 @@ controller.chat = (req, res) => {
         let homepage = true;
         let user = users.findOne(req.session.userId);
         let chats = chatModel.findAllByUser(req.session.userId);
-        user.chats = chats;
-        res.render('chat', { chats, homepage, user, conversations, chatId });
+        user.chats = chats.slice().reverse();
+        res.render('chat', { homepage, user, conversations, chatId });
     }
 }
 
