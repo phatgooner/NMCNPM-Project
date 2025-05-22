@@ -31,7 +31,7 @@ async function userRegister(e) {
     );
     let result = await res.json();
     if (result.isUser) {
-        let message = `<div class='horizontal-center'><h4>Tạo tài khoản thành công. <a href="/login" style="color:red; text-decoration: none;">Đăng nhập</a> ngay với tài khoản mới!</h4></div>`
+        let message = `<div class='horizontal-center'><h4>Account created successfully. <a href="/login" style="color:red; text-decoration: none;">Login</a> now with your new account!</h4></div>`
         document.querySelector('#register').innerHTML = message;
     }
     else {
