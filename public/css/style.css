@@ -57,7 +57,7 @@ button:disabled {
 }
 
 .chat-area {
-    height: 450px;
+    max-height: 450px;
     overflow-y: auto;
     scrollbar-width: none;
 }
@@ -87,7 +87,7 @@ button:disabled {
 }
 
 #welcome {
-    margin-top: 250px;
+    margin-top: 25vh;
 }
 
 .chat-bubble {
@@ -207,11 +207,12 @@ button:disabled {
 
 .sidebar {
     width: 280px;
-    height: 100vh;
+    height: 100%;
     background-color: #f8f9fa;
     padding: 1rem;
     overflow-y: auto;
     border-right: 1px solid #dee2e6;
+    scrollbar-width: none;
 }
 
 /* When sidebar is hidden */
@@ -244,10 +245,9 @@ button:disabled {
 }
 
 #sidebarFooter {
-    position: absolute;
-    bottom: 0;
-    width: 86%;
-    margin-bottom: 20px;
+    margin-top: 2rem;
+    width: 100%;
+    background-color: #f8f9fa;
 }
 
 .sidebar #chatHistory {
@@ -255,7 +255,7 @@ button:disabled {
 }
 
 .chat_sidebar_item {
-    max-height: 650px;
+    max-height: 65vh;
     overflow-y: auto;
     scrollbar-width: none;
 }
@@ -288,9 +288,8 @@ button:disabled {
 }
 
 .chat_sidebar_item i.dropdown-toggle {
-    position: absolute;
-    right: 0;
-    margin: 6px 24px 0 0;
+    z-index: 9999;
+    margin-top: 8px;
 }
 
 .dropdown-item {

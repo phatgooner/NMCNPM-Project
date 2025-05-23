@@ -35,6 +35,6 @@ async function userRegister(e) {
         document.querySelector('#register').innerHTML = message;
     }
     else {
-        document.querySelector('#errorMessage').innerHTML = `Tài khoản người dùng đã tồn tại!`;
+        document.querySelector('#errorMessage').innerHTML = `User account already exists!`;
     }
 }

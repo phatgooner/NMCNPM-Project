@@ -20,18 +20,17 @@
         <ul>
             {{#each chats}}
             <li>
-                <div class="btn text-start d-inline-block rounded-3 text-break" id="chat-{{id}}"
-                    onclick="location.href='/users/chat/{{id}}'">
-                    {{name}}
-                </div>
-                <i class="dropdown-toggle text-black-50 bi bi-three-dots float-end no-arrow" type="button"
-                    id="triggerId" data-bs-toggle="dropdown" aria-bs-haspopup="true" aria-bs-expanded="false"></i>
-                <div class="dropdown-menu" aria-bs-labelledby="triggerId">
-                    <button class="dropdown-item" href="#" id="rename" data-id="{{id}}" data-name="{{name}}"
-                        data-bs-toggle="modal" data-bs-target="#chatOptionsModal"><i
-                            class="bi bi-pencil-fill me-4"></i>Rename</button>
-                    <button class="dropdown-item text-red" href="#" id="deleteChatBtn" data-id="{{id}}"
-                        data-name="{{name}}"><i class="bi bi-trash me-4"></i>Delete</button>
+                <div class="btn text-start d-inline-block rounded-3 text-break py-0" id="chat-{{id}}">
+                    <i class="dropdown-toggle text-black-50 bi bi-three-dots float-end no-arrow" type="button"
+                        id="triggerId" data-bs-toggle="dropdown" aria-bs-haspopup="true" aria-bs-expanded="false"></i>
+                    <div class="dropdown-menu" aria-bs-labelledby="triggerId">
+                        <button class="dropdown-item" href="#" id="rename" data-id="{{id}}" data-name="{{name}}"
+                            data-bs-toggle="modal" data-bs-target="#chatOptionsModal"><i
+                                class="bi bi-pencil-fill me-4"></i>Rename</button>
+                        <button class="dropdown-item text-red" href="#" id="deleteChatBtn" data-id="{{id}}"
+                            data-name="{{name}}"><i class="bi bi-trash me-4"></i>Delete</button>
+                    </div>
+                    <div class="py-2" onclick="location.href='/users/chat/{{id}}'">{{name}}</div>
                 </div>
             </li>
             {{/each}}
