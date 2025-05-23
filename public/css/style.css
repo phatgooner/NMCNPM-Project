@@ -57,7 +57,7 @@ button:disabled {
 }
 
 .chat-area {
-    max-height: 450px;
+    height: 450px;
     overflow-y: auto;
     scrollbar-width: none;
 }
@@ -255,7 +255,7 @@ button:disabled {
 }
 
 .chat_sidebar_item {
-    max-height: 65vh;
+    height: 65vh;
     overflow-y: auto;
     scrollbar-width: none;
 }

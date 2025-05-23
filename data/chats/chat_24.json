@@ -1,1 +1,1 @@
-{"id":24,"user_id":1,"name":"New Chat","conversation":[{"role":"user","message":"helo"},{"role":"assistant","message":"It looks like you made a typo. Did you mean \"hello\"? If so, hello! How can I assist you today with your English learning?"}],"isDeleted":false}
+{"id":24,"user_id":1,"name":"New Chat","conversation":[{"role":"user","message":"helo"},{"role":"assistant","message":"It looks like you made a typo. Did you mean \"hello\"? If so, hello! How can I assist you today with your English learning?"}],"isDeleted":true}
