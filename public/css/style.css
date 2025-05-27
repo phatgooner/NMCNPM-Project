@@ -237,7 +237,7 @@ button:disabled {
     position: absolute;
     right: 0;
     margin-top: 8px;
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 #userInfo {
@@ -368,5 +368,15 @@ input#newTitle:focus {
 
     #mainContent {
         margin-left: 0 !important;
+    }
+}
+
+@media (max-height: 1000px) {
+    #sidebarFooter {
+        padding-bottom: 1rem;
+        width: 86%;
+        background-color: #f8f9fa;
+        position: absolute;
+        bottom: 0;
     }
 }

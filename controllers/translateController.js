@@ -5,7 +5,6 @@ controller.translateWord = async (req, res) => {
     const word = req.params.word;
     try {
         const data = await gptModel.translate(word);
-        console.log(data)
         res.json({ success: true, data });
     } catch (error) {
         res.status(404).json({ success: false, message: error.message });
