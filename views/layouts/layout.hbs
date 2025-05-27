@@ -24,6 +24,7 @@
 </head>
 
 <body>
+    {{>spinner}}
     {{#if homepage}}
     {{>sidebar}}
     {{#if user}}
@@ -95,7 +96,7 @@
             setTimeout(() => {
                 document.getElementById("loading-spinner").style.display = "none";
                 document.getElementById("mainContent").style.display = "block";
-            }, 500)
+            }, 200)
         });
     </script>
 

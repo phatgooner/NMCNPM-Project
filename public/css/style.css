@@ -360,3 +360,13 @@ input#newTitle:focus {
         transform: rotate(360deg);
     }
 }
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    #mainContent {
+        margin-left: 0 !important;
+    }
+}
