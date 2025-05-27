@@ -371,12 +371,18 @@ input#newTitle:focus {
     }
 }
 
-@media (max-height: 1000px) {
+@media (max-height: 900px) {
     #sidebarFooter {
         padding-bottom: 1rem;
         width: 86%;
         background-color: #f8f9fa;
         position: absolute;
         bottom: 0;
+    }
+
+    .chat-area {
+        max-height: calc(100vh - 300px);
+        min-height: 100px;
+        overflow: auto;
     }
 }
