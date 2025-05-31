@@ -47,7 +47,7 @@
 {{/with}}
 
 <div class="modal fade" id="chatOptionsModal" tabindex="-1" aria-labelledby="chatOptionsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="chatOptionsLabel">Chat Rename</h5>
@@ -58,7 +58,7 @@
                 <form id="renameForm">
                     <input type="hidden" id="chatId" />
                     <div class="mb-3">
-                        <label for="newTitle" class="form-label">New Title</label>
+                        <label for="newTitle" class="form-label">New Title:</label>
                         <input type="text" class="form-control" id="newTitle" required />
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Rename</button>
