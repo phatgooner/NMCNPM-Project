@@ -95,9 +95,9 @@ button:disabled {
 }
 
 #suggestions {
-    max-height: 220px;
+    max-height: 100px;
     overflow-y: auto;
-    scrollbar-width: none;
+    scrollbar-width: thin;
 }
 
 #login {

@@ -26,7 +26,7 @@ sendBtn.addEventListener("click", async () => {
             await createNewChat(text, data.reply);
         } else {
             renderSuggestions(data.suggestions);
-            chatArea.style = 'height: 450px';
+            chatArea.style = 'height: calc(100vh - 400px);';
             unableSubmit(false);
         }
     } catch (err) {

@@ -20,7 +20,7 @@ sendBtn.addEventListener("click", async () => {
         const data = await response.json();
         appendMessage("Assistant", data.reply);
         renderSuggestions(data.suggestions);
-        chatArea.style = 'height: 450px';
+        chatArea.style = 'height: calc(100vh - 400px);';
         chatArea.scrollTop = chatArea.scrollHeight;
         unableSubmit(false);
         await saveMessage(chatArea.getAttribute("data-id"), "assistant", data.reply);
