@@ -13,6 +13,6 @@ function speakText(text) {
         utterance.lang = 'en-US';
         speechSynthesis.speak(utterance);
     } else {
-        alert("Trình duyệt không hỗ trợ Text-to-Speech.");
+        alert("Your browser does not support Text-to-Speech.");
     }
 };

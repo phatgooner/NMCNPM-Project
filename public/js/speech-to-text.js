@@ -8,7 +8,7 @@ let silenceTimeout;
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 if (SpeechRecognition) {
     recognition = new SpeechRecognition();
-    recognition.lang = "en-US";  // hoặc "vi-VN" nếu bạn muốn tiếng Việt
+    recognition.lang = "en-US";
     recognition.continuous = true;
     recognition.interimResults = false;
 
@@ -17,7 +17,7 @@ if (SpeechRecognition) {
             .map(result => result[0].transcript)
             .join(" ");
         document.getElementById("inputText").value = transcript;
-        resetSilenceTimer(); // Có giọng nói -> reset bộ đếm im lặng
+        stopRecording();
     };
 
     recognition.onend = () => {
@@ -42,20 +42,10 @@ recordBtn.addEventListener("click", () => {
         recognition.start();
         isRecording = true;
         recordBtn.textContent = "⏹️ Stop";
-        resetSilenceTimer(); // bắt đầu đếm im lặng
     } else {
         stopRecording();
     }
 });
-
-// Tự động dừng nếu im lặng quá 5 giây
-function resetSilenceTimer() {
-    clearTimeout(silenceTimeout);
-    silenceTimeout = setTimeout(() => {
-        console.log("Silence detected: stopping recording...");
-        stopRecording();
-    }, 5000); // 5 giây im lặng thì dừng
-};
 
 // Dừng ghi âm
 function stopRecording() {
