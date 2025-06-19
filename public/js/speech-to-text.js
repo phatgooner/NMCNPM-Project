@@ -2,7 +2,6 @@ const recordBtn = document.getElementById("recordBtn");
 
 let isRecording = false;
 let recognition;
-let silenceTimeout;
 
 // Khởi tạo Web Speech API
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -23,7 +22,6 @@ if (SpeechRecognition) {
     recognition.onend = () => {
         isRecording = false;
         recordBtn.textContent = "🎙️ Record";
-        clearTimeout(silenceTimeout);
         console.log("Speech recognition ended");
     };
 
@@ -53,6 +51,5 @@ function stopRecording() {
         recognition.stop();
         isRecording = false;
         recordBtn.textContent = "🎙️ Record";
-        clearTimeout(silenceTimeout);
     };
 };
